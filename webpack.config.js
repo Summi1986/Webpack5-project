@@ -7,6 +7,7 @@ module.exports = (env) => ({
     devtool: 'source-map',
     devServer: {
         hot: true,
+        port: 8081,
         contentBase: path.join(__dirname, 'dist')
     },
     module: {
@@ -26,6 +27,9 @@ module.exports = (env) => ({
                 ]
             }
         ]
+    },
+    resolve: {
+        extensions: ['.js', '.jsx']
     },
     plugins: [
         new MiniCssExtractPlugin({
