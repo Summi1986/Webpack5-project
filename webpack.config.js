@@ -1,4 +1,6 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env) => ({
@@ -11,6 +13,7 @@ module.exports = (env) => ({
         contentBase: path.join(__dirname, 'dist')
     },
     output: {
+        path: path.resolve(__dirname, 'dist'),
         assetModuleFilename: "assets/[hash][ext][query]"
     },
     module: {
@@ -39,6 +42,10 @@ module.exports = (env) => ({
         extensions: ['.js', '.jsx']
     },
     plugins: [
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname, 'index.html')
+        }),
         new MiniCssExtractPlugin({
             filename: 'styles.css'
         })
