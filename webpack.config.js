@@ -10,6 +10,9 @@ module.exports = (env) => ({
         port: 8081,
         contentBase: path.join(__dirname, 'dist')
     },
+    output: {
+        assetModuleFilename: "assets/[hash][ext][query]"
+    },
     module: {
         rules: [
             {
@@ -25,6 +28,10 @@ module.exports = (env) => ({
                     'postcss-loader',
                     'sass-loader'
                 ]
+            }, 
+            {
+                test: /\.(png|jpe?g|svg|gif)$/i,
+                type: "asset"
             }
         ]
     },
